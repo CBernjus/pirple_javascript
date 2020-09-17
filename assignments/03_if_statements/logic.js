@@ -1,4 +1,4 @@
-// Homework Assignment #2 - Variables and Constants
+// Homework Assignment #3 - If Statements
 
 /* MORTALITY */
 

@@ -1,0 +1,52 @@
+/* Homework Assignment # 7 - DOM */
+body {
+    padding-top: 2rem;
+}
+
+h1,
+h2 {
+    margin: auto;
+    text-align: center;
+    max-width: 90vw;
+}
+
+.rectangleWrapper {
+    /* wrapper padding */
+    padding: 50px 50px 0 50px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.rectangle {
+    width: 20vw;
+    height: 20vw;
+    position: relative;
+
+    line-height: 20vw;
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+.rectangle:hover {
+    font-size: larger;
+    transition: ease-in-out 75ms font-size;
+    cursor: pointer;
+}
+
+.rectangle p {
+    line-height: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="css/main.css" />
+        <title>TODO List</title>
+    </head>
+    <header>
+        <a class="navbar-brand">TODO List App</a>
+        <div>
+            <button class="btn" data-login-target>LogIn</button>
+            <button class="btn" data-signup-target>SignUp</button>
+        </div>
+    </header>
+    <body>
+        <div class="container">
+            <div class="content">
+                <p>This app enables you to manage simple todo lists</p>
+            </div>
+        </div>
+        <div class="overlay" id="popup-overlay"></div>
+        <div class="popup" id="popup">
+            <div class="popup-close" id="popup-close">&times;</div>
+            <div class="form">
+                <div class="avatar">
+                    <img src="homework.svg" alt="Avatar" />
+                </div>
+                <div class="header" id="popup-title">Member Sign Up</div>
+                <div class="popup-element" data-popup-firstname>
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" />
+                </div>
+                <div class="popup-element" data-popup-lastname>
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" />
+                </div>
+                <div class="popup-element" data-popup-email>
+                    <label for="email">E-Mail</label>
+                    <input type="text" id="email" />
+                </div>
+                <div class="popup-element" data-popup-password>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" />
+                </div>
+                <div class="popup-element error"  data-popup-error hidden>
+                </div>
+                <div class="popup-element termsOfUse" data-popup-termsofuse>
+                    <input type="checkbox" id="termsOfUse"></input>
+                    <label class="popup-checkbox" for="termsOfUse"></label>
+                    <span>I agree to the Terms of Use</span>
+                </div>
+                <div class="popup-element" data-popup-button>
+                    <button>Sign Up</button>
+                </div>
+                <div class="popup-element popup-switch" data-popup-switch>
+                    <span>Already a Member?</span>&nbsp;<a id="popup-switch">Log In</a>
+                </div>
+            </div>
+        </div>
+        <footer></footer>
+    </body>
+    <script src="js/popup.js"></script>
+</html>

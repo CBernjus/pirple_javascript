@@ -1,0 +1,169 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+.overlay.active {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 300px;
+  width: 40vw;
+  max-width: 500px;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  z-index: 2;
+  background: #f5f5f5;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.popup .popup-close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  background: #555555;
+  color: #f5f5f5;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup .form {
+  padding: 5px;
+}
+
+.popup .form .header {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #222222;
+  margin: 10px 0px;
+}
+
+.popup .form .avatar {
+  text-align: center;
+}
+
+.popup .form .avatar img {
+  width: 150px;
+}
+
+.popup .form .popup-element {
+  padding: 5px 20px;
+  font-size: 14px;
+}
+
+.popup .form .popup-element label {
+  display: block;
+  font-size: 14px;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+.popup .form .popup-element input {
+  width: 100%;
+  font-size: 16px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid #aaaaaa;
+  background: #eeeeee;
+  border-radius: 5px;
+}
+
+.popup .form .popup-element button {
+  margin: 5px 0px;
+  width: 100%;
+  padding: 10px 0px;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #296fe8;
+  color: #f5f5f5;
+}
+
+.popup .form .error {
+  color: #c94242;
+}
+
+.popup .form .termsOfUse {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.popup .form .termsOfUse input[type="checkbox"] {
+  display: none;
+}
+
+.popup .form .termsOfUse input[type="checkbox"] + .popup-checkbox {
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 3px;
+  border: 1px solid #aaaaaa;
+  background: #f5f5f5;
+  display: block;
+  float: left;
+  margin: 0 0.5em 0 0;
+  cursor: pointer;
+}
+
+.popup .form .termsOfUse input[type="checkbox"]:checked + .popup-checkbox {
+  border: none;
+  background-color: #296fe8;
+  position: relative;
+}
+
+.popup .form .termsOfUse input[type="checkbox"]:checked + .popup-checkbox::after {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 0.35em;
+  height: 0.6em;
+  border-right: 2px solid #f5f5f5;
+  border-bottom: 2px solid #f5f5f5;
+  transform: translate(-50%, -50%) rotateZ(40deg);
+}
+
+.popup .form .popup-switch {
+  text-align: center;
+}
+
+.popup .form .popup-switch span {
+  color: #aaaaaa;
+}
+
+.popup .form .popup-switch a {
+  color: #296fe8;
+}
+
+.popup .form .popup-switch a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

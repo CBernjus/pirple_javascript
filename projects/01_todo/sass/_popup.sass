@@ -12,6 +12,9 @@ $color-shadow: rgba(0, 0, 0, 0.2)
 $font-size-big: 16px
 $font-size-small: 14px
 
+#popup-avatar-source
+    display: none
+
 .overlay.active
     position: fixed
     top: 0
@@ -20,6 +23,16 @@ $font-size-small: 14px
     height: 100vh
     z-index: 1
     background: $color-overlay
+
+    #popup-avatar-source
+        display: inline
+        position: absolute
+        bottom: 0
+        right: 0
+        color: $color-text-secondary
+
+        a
+            color: $color-text-secondary
 
 .popup
     position: absolute
@@ -116,7 +129,7 @@ $font-size-small: 14px
 
             input[type="checkbox"] + .popup-checkbox
                 width: 1.1em
-                height: 1.em
+                height: 1.1em
                 border-radius: 3px
                 border: 1px solid $color-input-border
                 background: $color-white

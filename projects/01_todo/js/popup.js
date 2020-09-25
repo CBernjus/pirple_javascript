@@ -112,6 +112,7 @@ function clearPopupInputs() {
         const input = element.querySelector("input");
         if (input) input.value = "";
     });
+    termsOfUseElement.querySelector("input").checked = false;
     removePopupIndicators();
 }
 

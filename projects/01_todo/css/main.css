@@ -88,6 +88,7 @@
 .popup .form .popup-element {
   padding: 5px 20px;
   font-size: 14px;
+  position: relative;
 }
 
 .popup .form .popup-element label {
@@ -123,8 +124,35 @@
   color: #f5f5f5;
 }
 
-.popup .form .error {
+.popup .form .popup-element i {
+  position: absolute;
+  top: 45px;
+  right: 30px;
+  visibility: hidden;
+}
+
+.popup .form .popup-element .error {
   color: #c94242;
+}
+
+.popup .form .popup-element.success input {
+  border-width: 2px;
+  border-color: #4cc470;
+}
+
+.popup .form .popup-element.success i.fa-check-circle {
+  color: #4cc470;
+  visibility: visible;
+}
+
+.popup .form .popup-element.error input {
+  border-width: 2px;
+  border-color: #c94242;
+}
+
+.popup .form .popup-element.error i.fa-exclamation-circle {
+  color: #c94242;
+  visibility: visible;
 }
 
 .popup .form .termsOfUse {
@@ -165,6 +193,18 @@
   border-right: 2px solid #f5f5f5;
   border-bottom: 2px solid #f5f5f5;
   transform: translate(-50%, -50%) rotateZ(40deg);
+}
+
+.popup .form .termsOfUse.popup-element.error i {
+  position: relative;
+  top: 0;
+  right: 0;
+  margin-left: 5px;
+}
+
+.popup .form .termsOfUse.popup-element.error .popup-checkbox {
+  border-width: 2px;
+  border-color: #c94242;
 }
 
 .popup .form .popup-switch {

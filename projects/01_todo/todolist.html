@@ -9,6 +9,12 @@
             integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
             crossorigin="anonymous"
         />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+            integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+            crossorigin="anonymous"
+        />
         <link rel="stylesheet" href="css/main.css" />
         <title>TODO List</title>
     </head>
@@ -38,31 +44,45 @@
                 <div class="popup-element" data-popup-firstname>
                     <label for="firstName">First Name</label>
                     <input type="text" id="firstName" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div class="error" hidden></div>
                 </div>
                 <div class="popup-element" data-popup-lastname>
                     <label for="lastName">Last Name</label>
                     <input type="text" id="lastName" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div class="error" hidden></div>
                 </div>
                 <div class="popup-element" data-popup-email>
                     <label for="email">E-Mail</label>
                     <input type="text" id="email" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div class="error" hidden></div>
                 </div>
                 <div class="popup-element" data-popup-password>
                     <label for="password">Password</label>
                     <input type="password" id="password" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div class="error" hidden></div>
                 </div>
                 <div class="popup-element" data-popup-password-confirm>
                     <label for="password-confirm">Confirm Password</label>
                     <input type="password" id="password-confirm" />
-                </div>
-                <div class="popup-element error"  data-popup-error hidden>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <div class="error" hidden></div>
                 </div>
                 <div class="popup-element termsOfUse" data-popup-termsofuse>
                     <input type="checkbox" id="termsOfUse"></input>
                     <label class="popup-checkbox" for="termsOfUse"></label>
                     <span>I agree to the Terms of Use</span>
+                    <i class="fas fa-exclamation-circle"></i>
                 </div>
-                <div class="popup-element" data-popup-button>
+                <div class="popup-element" data-popup-submit>
                     <button>Sign Up</button>
                 </div>
                 <div class="popup-element popup-switch" data-popup-switch>

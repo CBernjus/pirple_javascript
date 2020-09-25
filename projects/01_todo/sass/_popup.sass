@@ -73,6 +73,7 @@
         .popup-element
             padding: 5px 20px
             font-size: $font-size-small
+            position: relative
 
             label
                 display: block
@@ -104,8 +105,34 @@
                 background: $color-blue
                 color: $color-white
 
-        .error
-            color: $color-error
+            i
+                position: absolute
+                top: 45px
+                right: 30px
+                visibility: hidden
+
+            .error
+                color: $color-error
+
+            &.success
+
+                input
+                    border-width: 2px
+                    border-color: $color-success
+
+                i.fa-check-circle
+                    color: $color-success
+                    visibility: visible
+
+            &.error
+
+                input
+                    border-width: 2px
+                    border-color: $color-error
+
+                i.fa-exclamation-circle
+                    color: $color-error
+                    visibility: visible
 
         .termsOfUse
             display: flex
@@ -141,6 +168,18 @@
                     border-right: 2px solid $color-white
                     border-bottom: 2px solid $color-white
                     transform: translate(-50%, -50%) rotateZ(40deg)
+
+            &.popup-element.error
+
+                i
+                    position: relative
+                    top: 0
+                    right: 0
+                    margin-left: 5px
+
+                .popup-checkbox
+                    border-width: 2px
+                    border-color: $color-error
 
         .popup-switch
             text-align: center

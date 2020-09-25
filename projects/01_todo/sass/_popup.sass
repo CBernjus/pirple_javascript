@@ -54,6 +54,11 @@
         cursor: pointer
         box-shadow: 5px 5px 10px $color-shadow
 
+    .popup-close:focus,
+    .popup-close:hover
+        background-color: $color-blue
+        outline: none
+
     .form
         padding: 5px
 
@@ -105,6 +110,10 @@
                 background: $color-blue
                 color: $color-white
 
+            button:focus,
+            button:hover
+                text-decoration: underline
+
             i
                 position: absolute
                 top: 45px
@@ -142,16 +151,21 @@
             input[type="checkbox"]
                 display: none
 
-            input[type="checkbox"] + .popup-checkbox
-                width: 1.1em
-                height: 1.1em
-                border-radius: 3px
-                border: 1px solid $color-input-border
-                background: $color-white
-                display: block
-                float: left
-                margin: 0 0.5em 0 0
-                cursor: pointer
+            input[type="checkbox"]
+
+                & + .popup-checkbox
+                    width: 1.1em
+                    height: 1.1em
+                    border-radius: 3px
+                    border: 1px solid $color-input-border
+                    background: $color-white
+                    display: block
+                    float: left
+                    margin: 0 0.5em 0 0
+                    cursor: pointer
+
+                & + .popup-checkbox:focus
+                    border-color: $color-blue
 
             input[type="checkbox"]:checked + .popup-checkbox
                 border: none
@@ -190,6 +204,10 @@
             a
                 color: $color-blue
 
+                &:focus
+                    outline: none
+
+                &:focus,
                 &:hover
                     cursor: pointer
                     text-decoration: underline

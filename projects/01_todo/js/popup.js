@@ -34,8 +34,8 @@ openSignUpButton.addEventListener("click", openSignUpPopup);
 closePopupButton.addEventListener("click", closePopup);
 popupSwitchLink.addEventListener("click", switchForm);
 
-textInputs[2].addEventListener("focusout", checkEmail);
-passwordInputs[0].addEventListener("focusout", checkPassword);
+textInputs[2].addEventListener("input", checkEmail);
+passwordInputs[0].addEventListener("input", checkPassword);
 passwordInputs[1].addEventListener("focusout", confirmPasswords);
 termsOfUseElement
     .querySelector("input[type=checkbox]")
@@ -116,8 +116,6 @@ function clearPopupInputs() {
 }
 
 // input checking
-// TODO: remove some of the setSuccessFor calls
-
 function checkNotEmpty(input, parent) {
     if (input.value.trim() == "") {
         setErrorMessageFor(parent, "Cannot be empty");

@@ -19,11 +19,16 @@
         <title>TODO List</title>
     </head>
     <header>
-        <a class="navbar-brand">TODO List App</a>
+        <div class="header-logo">
+            <!--TODO: Link to Home -->
+            <img src="img/homework_white.svg" />
+            <span>TODO List App</span>
+        </div>
         <div>
-            <button class="btn" data-login-target>LogIn</button>
-            <button class="btn" data-signup-target>SignUp</button>
-            <button class="btn" data-settings-target><i class="fas fa-user-cog"></i></button>
+            <button class="btn" data-signup-target>Sign Up</button>
+            <button class="btn" data-login-target>Log In</button>
+            <button class="btn" data-logout-target hidden>Log Out</button>
+            <button class="btn" data-settings-target hidden><i class="fas fa-user-cog"></i></button>
         </div>
     </header>
     <body>
@@ -33,68 +38,80 @@
             </div>
         </div>
         <div class="overlay" data-overlay>
-            <div id="popup-avatar-source">Icons made by <a href="https://www.flaticon.com/authors/payungkead" title="Payungkead" tabindex="-1">Payungkead</a> from <a href="https://www.flaticon.com/" title="Flaticon" tabindex="-1">www.flaticon.com</a></div>
-        </div>
-            <div class="popup" data-popup data-popup>
-                <div class="popup-close" data-popup-close tabindex="0">&times;</div>
-                <div class="header">
-                    <span data-popup-title>Member Sign Up</span>
-                    <div class="avatar">
-                        <img src="img/homework.svg" alt="Avatar" />
-                    </div>
-                </div>
-                <div class="popup-element" data-popup-firstname>
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" />
-                    <i class="fas fa-check-circle"></i>
-                    <i class="fas fa-exclamation-circle"></i>
-                    <div class="error" hidden></div>
-                </div>
-                <div class="popup-element" data-popup-lastname>
-                    <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" />
-                    <i class="fas fa-check-circle"></i>
-                    <i class="fas fa-exclamation-circle"></i>
-                    <div class="error" hidden></div>
-                </div>
-                <div class="popup-element" data-popup-email>
-                    <label for="email">E-Mail</label>
-                    <input type="text" id="email" />
-                    <i class="fas fa-check-circle"></i>
-                    <i class="fas fa-exclamation-circle"></i>
-                    <div class="error" hidden></div>
-                </div>
-                <div class="popup-element" data-popup-password>
-                    <label for="password">Password</label>
-                    <input type="password" id="password" />
-                    <i class="fas fa-check-circle"></i>
-                    <i class="fas fa-exclamation-circle"></i>
-                    <div class="error" hidden></div>
-                </div>
-                <div class="popup-element" data-popup-password-confirm>
-                    <label for="password-confirm">Confirm Password</label>
-                    <input type="password" id="password-confirm" />
-                    <i class="fas fa-check-circle"></i>
-                    <i class="fas fa-exclamation-circle"></i>
-                    <div class="error" hidden></div>
-                </div>
-                <div class="popup-element termsOfUse" data-popup-termsofuse>
-                    <input type="checkbox" id="termsOfUse"></input>
-                    <label class="popup-checkbox" tabindex="0" for="termsOfUse"></label>
-                    <span>I agree to the Terms of Use</span>
-                    <i class="fas fa-exclamation-circle"></i>
-                </div>
-                <div class="popup-element" data-popup-submit>
-                    <button></button>
-                </div>
-                <div class="popup-element delete" data-popup-delete>
-                    <button>Delete</button>
-                </div>
-                <div class="popup-element popup-switch" data-popup-switch>
-                    <span>Already a Member?</span>&nbsp;<a id="popup-switch" tabindex="0">Log In</a>
-                </div>
+            <div id="popup-avatar-source">
+                Icons made by
+                <a
+                    href="https://www.flaticon.com/authors/payungkead"
+                    title="Payungkead"
+                    tabindex="-1"
+                    >Payungkead</a
+                >
+                from
+                <a href="https://www.flaticon.com/" title="Flaticon" tabindex="-1"
+                    >www.flaticon.com</a
+                >
             </div>
-        <footer></footer>
+        </div>
+        <div class="popup" data-popup data-popup>
+            <div class="popup-close" data-popup-close tabindex="0">&times;</div>
+            <div class="header">
+                <div class="avatar">
+                    <img src="img/homework.svg" alt="Avatar" />
+                </div>
+                <span data-popup-title>Member Sign Up</span>
+            </div>
+            <div class="popup-element" data-popup-firstname>
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="error" hidden></div>
+            </div>
+            <div class="popup-element" data-popup-lastname>
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="error" hidden></div>
+            </div>
+            <div class="popup-element" data-popup-email>
+                <label for="email">E-Mail</label>
+                <input type="text" id="email" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="error" hidden></div>
+            </div>
+            <div class="popup-element" data-popup-password>
+                <label for="password">Password</label>
+                <input type="password" id="password" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="error" hidden></div>
+            </div>
+            <div class="popup-element" data-popup-password-confirm>
+                <label for="password-confirm">Confirm Password</label>
+                <input type="password" id="password-confirm" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="error" hidden></div>
+            </div>
+            <div class="popup-element termsOfUse" data-popup-termsofuse>
+                <input type="checkbox" id="termsOfUse" />
+                <label class="popup-checkbox" tabindex="0" for="termsOfUse"></label>
+                <span>I agree to the Terms of Use</span>
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="popup-element" data-popup-submit>
+                <button></button>
+            </div>
+            <div class="popup-element delete" data-popup-delete>
+                <button>Delete</button>
+            </div>
+            <div class="popup-element popup-switch" data-popup-switch>
+                <span>Already a Member?</span>&nbsp;<a id="popup-switch" tabindex="0">Log In</a>
+            </div>
+        </div>
+        <footer>&copy; 2020 Christopher Bernjus</footer>
     </body>
     <script src="js/storage.js"></script>
     <script src="js/popup.js"></script>

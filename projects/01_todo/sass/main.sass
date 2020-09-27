@@ -3,4 +3,30 @@
 *::before
     box-sizing: border-box
 
+@import './_variables'
 @import './popup'
+
+header
+    background: $color-blue
+    color: $color-white
+    padding: 10px
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+    .header-logo
+        display: flex
+        align-items: center
+
+    img
+        width: 3rem
+        margin: 0 10px
+
+    .btn
+        color: $color-white
+
+footer
+    position: fixed
+    bottom: 0
+    width: 100%
+    text-align: center

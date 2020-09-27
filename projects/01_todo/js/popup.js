@@ -9,6 +9,7 @@ const popupElements = document.querySelectorAll(".popup-element");
 // buttons
 const openLogInButton = document.querySelector("[data-login-target]");
 const openSignUpButton = document.querySelector("[data-signup-target]");
+const logOutButton = document.querySelector("[data-logout-target]");
 const openSettingsButton = document.querySelector("[data-settings-target]");
 const closePopupButton = document.querySelector("[data-popup-close]");
 
@@ -40,6 +41,7 @@ document.addEventListener("keydown", function closePopupOnEsc(event) {
 openLogInButton.addEventListener("click", openLogInPopup);
 openSignUpButton.addEventListener("click", openSignUpPopup);
 openSettingsButton.addEventListener("click", openSettingsPopup);
+logOutButton.addEventListener("click", logout);
 closePopupButton.addEventListener("click", closePopup);
 popupSwitchLink.addEventListener("click", switchForm);
 
@@ -60,7 +62,7 @@ deleteButton.addEventListener("click", deleteUser);
 
 // VARIABLES
 
-let popupIsLogIn = true;
+let popupIsLogIn = false;
 let popupIsSettings = false;
 let loggedIn = false;
 let currentUserEmail = "";
@@ -117,6 +119,26 @@ function prepareSettingsForm() {
     popupSwitchElement.hidden = true;
     popupIsLogIn = false;
     popupIsSettings = true;
+}
+
+function login(email) {
+    // TODO: show lists view
+    currentUserEmail = email;
+    loggedIn = true;
+    openLogInButton.hidden = true;
+    openSignUpButton.hidden = true;
+    openSettingsButton.hidden = false;
+    logOutButton.hidden = false;
+}
+
+function logout() {
+    // TODO: clear lists view
+    currentUserEmail = "";
+    loggedIn = false;
+    openLogInButton.hidden = false;
+    openSignUpButton.hidden = false;
+    openSettingsButton.hidden = true;
+    logOutButton.hidden = true;
 }
 
 function fillSettingsForm() {
@@ -244,9 +266,9 @@ function checkPassword() {
 function confirmPasswords() {
     return (
         checkPassword() &
-        (!popupIsLogIn &&
-            checkNotEmpty(passwordInputs[1], confirmPasswordElement) &&
-            confirmPasswordsEquality())
+        (popupIsLogIn ||
+            (checkNotEmpty(passwordInputs[1], confirmPasswordElement) &&
+                confirmPasswordsEquality()))
     );
 }
 
@@ -305,11 +327,13 @@ function submitPopup() {
                 setErrorMessageFor(passwordElement, "Invalid Password");
                 return;
             }
+            login(email);
         } else {
             // Sign Up
             const firstNameValue = firstNameElement.querySelector("input").value;
             const lastNameValue = lastNameElement.querySelector("input").value;
             newUser(firstNameValue, lastNameValue, emailValue, passwordValue);
+            login(email);
         }
         currentUserEmail = emailValue;
         closePopup();
@@ -318,10 +342,12 @@ function submitPopup() {
 
 function deleteUser() {
     if (popupIsSettings) {
+        // TODO: input vs placeholder
         const emailValue = emailElement.querySelector("input").value;
         removeUser(emailValue);
-        // TODO: Logout
+        // TODO: second Check
         closePopup();
+        logout();
     }
 }
 

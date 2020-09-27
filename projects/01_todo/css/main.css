@@ -159,6 +159,10 @@
   visibility: visible;
 }
 
+.popup .popup-element.delete button {
+  background: #c94242;
+}
+
 .popup .termsOfUse {
   display: flex;
   align-items: center;

@@ -23,6 +23,7 @@
         <div>
             <button class="btn" data-login-target>LogIn</button>
             <button class="btn" data-signup-target>SignUp</button>
+            <button class="btn" data-settings-target><i class="fas fa-user-cog"></i></button>
         </div>
     </header>
     <body>
@@ -31,16 +32,17 @@
                 <p>This app enables you to manage simple todo lists</p>
             </div>
         </div>
-        <div class="overlay" id="popup-overlay">
+        <div class="overlay" data-overlay>
             <div id="popup-avatar-source">Icons made by <a href="https://www.flaticon.com/authors/payungkead" title="Payungkead" tabindex="-1">Payungkead</a> from <a href="https://www.flaticon.com/" title="Flaticon" tabindex="-1">www.flaticon.com</a></div>
         </div>
-        <div class="popup" id="popup">
-            <div class="popup-close" id="popup-close" tabindex="0">&times;</div>
-            <div class="form" id="popup-form">
-                <div class="avatar">
-                    <img src="img/homework.svg" alt="Avatar" />
+            <div class="popup" data-popup data-popup>
+                <div class="popup-close" data-popup-close tabindex="0">&times;</div>
+                <div class="header">
+                    <span data-popup-title>Member Sign Up</span>
+                    <div class="avatar">
+                        <img src="img/homework.svg" alt="Avatar" />
+                    </div>
                 </div>
-                <div class="header" id="popup-title">Member Sign Up</div>
                 <div class="popup-element" data-popup-firstname>
                     <label for="firstName">First Name</label>
                     <input type="text" id="firstName" />
@@ -83,14 +85,14 @@
                     <i class="fas fa-exclamation-circle"></i>
                 </div>
                 <div class="popup-element" data-popup-submit>
-                    <button>Sign Up</button>
+                    <button></button>
                 </div>
                 <div class="popup-element popup-switch" data-popup-switch>
                     <span>Already a Member?</span>&nbsp;<a id="popup-switch" tabindex="0">Log In</a>
                 </div>
             </div>
-        </div>
         <footer></footer>
     </body>
+    <script src="js/storage.js"></script>
     <script src="js/popup.js"></script>
 </html>

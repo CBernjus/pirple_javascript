@@ -37,6 +37,7 @@
   min-width: 300px;
   width: 40vw;
   max-width: 500px;
+  padding: 5px;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
   z-index: 2;
@@ -71,11 +72,7 @@
   outline: none;
 }
 
-.popup .form {
-  padding: 5px;
-}
-
-.popup .form .header {
+.popup .header {
   text-align: center;
   font-size: 20px;
   font-weight: 600;
@@ -83,28 +80,24 @@
   margin: 10px 0px;
 }
 
-.popup .form .avatar {
-  text-align: center;
-}
-
-.popup .form .avatar img {
+.popup .header img {
   width: 150px;
 }
 
-.popup .form .popup-element {
+.popup .popup-element {
   padding: 5px 20px;
   font-size: 14px;
   position: relative;
 }
 
-.popup .form .popup-element label {
+.popup .popup-element label {
   display: block;
   font-size: 14px;
   color: #222;
   margin-bottom: 5px;
 }
 
-.popup .form .popup-element input {
+.popup .popup-element input {
   width: 100%;
   font-size: 16px;
   padding: 8px 10px;
@@ -115,7 +108,7 @@
   border-radius: 5px;
 }
 
-.popup .form .popup-element button {
+.popup .popup-element button {
   margin: 5px 0px;
   width: 100%;
   padding: 10px 0px;
@@ -130,53 +123,53 @@
   color: #f5f5f5;
 }
 
-.popup .form .popup-element button:focus,
-.popup .form .popup-element button:hover {
+.popup .popup-element button:focus,
+.popup .popup-element button:hover {
   text-decoration: underline;
 }
 
-.popup .form .popup-element i {
+.popup .popup-element i {
   position: absolute;
   top: 45px;
   right: 30px;
   visibility: hidden;
 }
 
-.popup .form .popup-element .error {
+.popup .popup-element .error {
   color: #c94242;
 }
 
-.popup .form .popup-element.success input {
+.popup .popup-element.success input {
   border-width: 2px;
   border-color: #4cc470;
 }
 
-.popup .form .popup-element.success i.fa-check-circle {
+.popup .popup-element.success i.fa-check-circle {
   color: #4cc470;
   visibility: visible;
 }
 
-.popup .form .popup-element.error input {
+.popup .popup-element.error input {
   border-width: 2px;
   border-color: #c94242;
 }
 
-.popup .form .popup-element.error i.fa-exclamation-circle {
+.popup .popup-element.error i.fa-exclamation-circle {
   color: #c94242;
   visibility: visible;
 }
 
-.popup .form .termsOfUse {
+.popup .termsOfUse {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.popup .form .termsOfUse input[type="checkbox"] {
+.popup .termsOfUse input[type="checkbox"] {
   display: none;
 }
 
-.popup .form .termsOfUse input[type="checkbox"] + .popup-checkbox {
+.popup .termsOfUse input[type="checkbox"] + .popup-checkbox {
   width: 1.1em;
   height: 1.1em;
   border-radius: 3px;
@@ -188,17 +181,17 @@
   cursor: pointer;
 }
 
-.popup .form .termsOfUse input[type="checkbox"] + .popup-checkbox:focus {
+.popup .termsOfUse input[type="checkbox"] + .popup-checkbox:focus {
   border-color: #296fe8;
 }
 
-.popup .form .termsOfUse input[type="checkbox"]:checked + .popup-checkbox {
+.popup .termsOfUse input[type="checkbox"]:checked + .popup-checkbox {
   border: none;
   background-color: #296fe8;
   position: relative;
 }
 
-.popup .form .termsOfUse input[type="checkbox"]:checked + .popup-checkbox::after {
+.popup .termsOfUse input[type="checkbox"]:checked + .popup-checkbox::after {
   content: "";
   position: absolute;
   top: 45%;
@@ -210,35 +203,35 @@
   transform: translate(-50%, -50%) rotateZ(40deg);
 }
 
-.popup .form .termsOfUse.popup-element.error i {
+.popup .termsOfUse.popup-element.error i {
   position: relative;
   top: 0;
   right: 0;
   margin-left: 5px;
 }
 
-.popup .form .termsOfUse.popup-element.error .popup-checkbox {
+.popup .termsOfUse.popup-element.error .form-checkbox {
   border-width: 2px;
   border-color: #c94242;
 }
 
-.popup .form .popup-switch {
+.popup .popup-switch {
   text-align: center;
 }
 
-.popup .form .popup-switch span {
+.popup .popup-switch span {
   color: #aaaaaa;
 }
 
-.popup .form .popup-switch a {
+.popup .popup-switch a {
   color: #296fe8;
 }
 
-.popup .form .popup-switch a:focus {
+.popup .popup-switch a:focus {
   outline: none;
 }
 
-.popup .form .popup-switch a:focus, .popup .form .popup-switch a:hover {
+.popup .popup-switch a:focus, .popup .popup-switch a:hover {
   cursor: pointer;
   text-decoration: underline;
 }

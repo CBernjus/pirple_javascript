@@ -1,4 +1,5 @@
-let storage = window.localStorage;
+const storage = window.localStorage;
+const STORAGE_KEY = "todo-users";
 
 class User {
     constructor(_firstName, _lastName, _email, _password) {
@@ -6,24 +7,15 @@ class User {
         this.lastName = _lastName;
         this.email = _email;
         this.password = _password;
-        this.lists = {};
-    }
-
-    toString() {
-        return JSON.stringify(this);
-    }
-
-    fromString(str) {
-        const parsed = JSON.parse(str);
-        if (parsed instanceof User) return false;
-        return parsed;
+        this.lists = [];
     }
 }
 
 class List {
     constructor(_name) {
+        this.id = Date.now().toString();
         this.name = _name;
-        this.items = [];
+        this.tasks = [];
     }
 
     add(item) {
@@ -36,19 +28,17 @@ class List {
     }
 }
 
-class ListItem {
-    constructor(_text) {
+class Task {
+    constructor(_text, _checked) {
+        this.id = Date.now().toString();
         this.text = _text;
-        this.checked = false;
+        this.checked = _checked;
     }
+}
 
-    check() {
-        this.checked = true;
-    }
-
-    uncheck() {
-        this.checked = false;
-    }
+function getUserList() {
+    const listString = storage.getItem(STORAGE_KEY);
+    return listString === "" ? [] : JSON.parse(storage.getItem(STORAGE_KEY));
 }
 
 function newUser(firstName, lastName, email, password) {
@@ -57,34 +47,42 @@ function newUser(firstName, lastName, email, password) {
 }
 
 function getUser(email) {
-    return User.prototype.fromString(storage.getItem(email));
+    return getUserList().find((user) => user.email == email);
 }
 
-function getList(email, listName) {
+function getLists(email) {
     const user = getUser(email);
+    if (user) return user.lists;
+    else return false;
 }
 
-function updateUserInfo(email, property, value) {
+function getList(email, listId) {
     const user = getUser(email);
-    switch (property) {
-        case "firstName":
-            user.firstName = value;
-            break;
-        case "lastName":
-            user.firstName = value;
-            break;
-        case "email":
-            user.firstName = value;
-            break;
-        case "password":
-            user.firstName = value;
-            break;
-        default:
-            return false;
-            break;
-    }
-    saveUser(user);
-    return true;
+    if (user) return user.lists.filter((list) => list.id === listId);
+    else return false;
+}
+
+function addList(email, list) {
+    const user = getUser(email);
+    if (user.lists) {
+        user.lists.push(list);
+        saveUser(user);
+        return true;
+    } else return false;
+}
+
+function removeList(email, listId) {
+    const user = getUser(email);
+    if (user && user.lists) {
+        user.lists = user.lists.filter((list) => list.id !== listId);
+        saveUser(user);
+        return true;
+    } else return false;
+}
+
+function updateList(email, list) {
+    removeList(email, list.id);
+    addList(email, list);
 }
 
 function userExists(email) {
@@ -93,16 +91,19 @@ function userExists(email) {
     return false;
 }
 
-function checkPassword(email, password) {
+function authenticate(email, password) {
     const user = getUser(email);
     if (user && user.password == password) return true;
     return false;
 }
 
 function saveUser(user) {
-    storage.setItem(user.email, user.toString());
+    const userList = getUserList().filter((u) => u.email !== user.email);
+    userList.push(user);
+    storage.setItem(STORAGE_KEY, JSON.stringify(userList));
 }
 
 function removeUser(email) {
-    storage.removeItem(email);
+    const userList = getUserList().filter((user) => user.email !== email);
+    storage.setItem(STORAGE_KEY, userList);
 }

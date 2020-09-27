@@ -1,34 +1,6 @@
-// ELEMENTS
-
-// general
-const popup = document.querySelector("[data-popup]");
-const overlay = document.querySelector("[data-overlay]");
-const popupForm = document.querySelector("[data-popup]");
-const popupElements = document.querySelectorAll(".popup-element");
-
-// buttons
-const openLogInButton = document.querySelector("[data-login-target]");
-const openSignUpButton = document.querySelector("[data-signup-target]");
-const logOutButton = document.querySelector("[data-logout-target]");
-const openSettingsButton = document.querySelector("[data-settings-target]");
-const closePopupButton = document.querySelector("[data-popup-close]");
-
-// popup form elements
-const formTitle = popupForm.querySelector("[data-popup-title]");
-const firstNameElement = popupForm.querySelector("[data-popup-firstname]");
-const lastNameElement = popupForm.querySelector("[data-popup-lastname]");
-const emailElement = popupForm.querySelector("[data-popup-email]");
-const passwordElement = popupForm.querySelector("[data-popup-password]");
-const confirmPasswordElement = popupForm.querySelector("[data-popup-password-confirm]");
-const termsOfUseElement = popupForm.querySelector("[data-popup-termsofuse]");
-const submitButton = popupForm.querySelector("[data-popup-submit] button");
-const deleteButtonElement = popupForm.querySelector("[data-popup-delete]");
-const deleteButton = deleteButtonElement.querySelector("button");
-const popupSwitchElement = popupForm.querySelector("[data-popup-switch]");
-const popupSwitchLink = popupForm.querySelector("#popup-switch");
-
-const textInputs = popupForm.querySelectorAll(".popup-element input[type=text]");
-const passwordInputs = popupForm.querySelectorAll(".popup-element input[type=password]");
+// VARIABLES
+let popupIsLogIn = false;
+let popupIsSettings = false;
 
 // EVENT LISTENERS
 
@@ -41,7 +13,6 @@ document.addEventListener("keydown", function closePopupOnEsc(event) {
 openLogInButton.addEventListener("click", openLogInPopup);
 openSignUpButton.addEventListener("click", openSignUpPopup);
 openSettingsButton.addEventListener("click", openSettingsPopup);
-logOutButton.addEventListener("click", logout);
 closePopupButton.addEventListener("click", closePopup);
 popupSwitchLink.addEventListener("click", switchForm);
 
@@ -57,15 +28,14 @@ termsOfUseElement.addEventListener("keydown", function (event) {
         checkTermsOfUse();
     }
 });
-submitButton.addEventListener("click", submitPopup);
-deleteButton.addEventListener("click", deleteUser);
-
-// VARIABLES
-
-let popupIsLogIn = false;
-let popupIsSettings = false;
-let loggedIn = false;
-let currentUserEmail = "";
+submitButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    submitPopup();
+});
+deleteButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    deleteUser();
+});
 
 // FUNCTIONS
 
@@ -121,32 +91,7 @@ function prepareSettingsForm() {
     popupIsSettings = true;
 }
 
-function login(email) {
-    // TODO: show lists view
-    currentUserEmail = email;
-    loggedIn = true;
-    openLogInButton.hidden = true;
-    openSignUpButton.hidden = true;
-    openSettingsButton.hidden = false;
-    logOutButton.hidden = false;
-}
-
-function logout() {
-    // TODO: clear lists view
-    currentUserEmail = "";
-    loggedIn = false;
-    openLogInButton.hidden = false;
-    openSignUpButton.hidden = false;
-    openSettingsButton.hidden = true;
-    logOutButton.hidden = true;
-}
-
 function fillSettingsForm() {
-    const firstNameInput = firstNameElement.querySelector("input");
-    const lastNameInput = lastNameElement.querySelector("input");
-    const emailInput = emailElement.querySelector("input");
-    const passwordInput = passwordElement.querySelector("input");
-
     const user = getUser(currentUserEmail);
     if (user) {
         firstNameInput.placeholder = user.firstName;
@@ -193,161 +138,66 @@ function switchForm() {
     } else {
         prepareLogInForm();
     }
+    clearPopupInputs();
     removePopupIndicators();
 }
 
 function clearPopupInputs() {
     popupElements.forEach((element) => {
         const input = element.querySelector("input");
-        if (input) input.value = "";
+        if (input) {
+            input.placeholder = "";
+            input.value = "";
+        }
     });
     termsOfUseElement.querySelector("input").checked = false;
     removePopupIndicators();
 }
 
-// input checking
-
-function checkNotEmpty(input, parent) {
-    if (input.value.trim() == "") {
-        setErrorMessageFor(parent, "This field is required");
-        return false;
-    }
-    setSuccessFor(parent);
-    return true;
-}
-
-function checkNames() {
-    return (
-        checkNotEmpty(textInputs[0], firstNameElement) &
-        checkNotEmpty(textInputs[1], lastNameElement)
-    );
-}
-
-function checkEmail() {
-    const emailValue = textInputs[2].value.trim();
-    return (
-        checkNotEmpty(textInputs[2], emailElement) &&
-        checkEmailFormat(emailValue) &&
-        checkEmailAvailability(emailValue)
-    );
-}
-
-function checkEmailFormat(email) {
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!email.match(emailRegex)) {
-        setErrorMessageFor(emailElement, "Email is not valid");
-        return false;
-    }
-    return true;
-}
-function checkEmailAvailability(email) {
-    if (popupIsLogIn) {
-        if (!userExists(email)) {
-            setErrorMessageFor(emailElement, "Email is not used");
-            return false;
-        }
-    } else {
-        if (userExists(email)) {
-            setErrorMessageFor(emailElement, "Email is already in use");
-            return false;
-        }
-    }
-    setSuccessFor(emailElement);
-    return true;
-}
-
-function checkPassword() {
-    return (
-        (!popupIsLogIn || checkNotEmpty(passwordInputs[0], passwordElement)) &&
-        checkPasswordFormat(passwordInputs[0])
-    );
-}
-
-function confirmPasswords() {
-    return (
-        checkPassword() &
-        (popupIsLogIn ||
-            (checkNotEmpty(passwordInputs[1], confirmPasswordElement) &&
-                confirmPasswordsEquality()))
-    );
-}
-
-function checkPasswordFormat(input) {
-    // TODO: illegal characters
-    const password = input.value.trim();
-    if (password.length < 8) {
-        setErrorMessageFor(passwordElement, "Must be at least 8 digits long");
-        return false;
-    } else if (!password.match(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*\W)([^\s]){8,}$/)) {
-        setErrorMessageFor(
-            passwordElement,
-            "Must contain at least one uppercase letter, one digit and one symbol"
-        );
-        return false;
-    }
-    setSuccessFor(passwordElement);
-    return true;
-}
-
-function confirmPasswordsEquality() {
-    if (passwordInputs[0].value.trim() != passwordInputs[1].value.trim()) {
-        setErrorMessageFor(confirmPasswordElement, "Password mismatch");
-        return false;
-    }
-    setSuccessFor(confirmPasswordElement);
-    return true;
-}
-
-function checkTermsOfUse() {
-    const checkbox = termsOfUseElement.querySelector("input[type=checkbox]");
-    if (!checkbox.checked) {
-        termsOfUseElement.classList.add("error");
-        return false;
-    }
-    termsOfUseElement.classList.remove("error");
-    return true;
-}
-
-function checkInputs() {
-    return checkEmail() & confirmPasswords() & (popupIsLogIn || checkNames() & checkTermsOfUse());
-}
-
 function submitPopup() {
+    const firstNameValue = firstNameInput.value.trim();
+    const lastNameValue = lastNameInput.value.trim();
+    const emailValue = emailInput.value.trim();
+    const passwordValue = passwordInput.value.trim();
+    const confirmPasswordValue = confirmPasswordInput.value.trim();
     if (popupIsSettings) {
-        // TODO: ignore empty input
-        // TODO: check input
-        // TODO: Update User
-        // TODO: Remove User
+        const user = getUser(currentUserEmail);
+        if (firstNameValue !== "") {
+            user.firstName = firstNameValue;
+            setSuccessFor(firstNameElement);
+        }
+        if (lastNameValue !== "") {
+            user.lastName = lastNameValue;
+            setSuccessFor(lastNameElement);
+        }
+        if (
+            emailValue !== "" &&
+            checkEmailFormat(emailValue) & checkEmailAvailability(emailValue)
+        ) {
+            user.email = emailValue;
+            setSuccessFor(emailElement);
+        }
+        if (passwordValue !== user.password && confirmPasswords()) {
+            user.password = passwordValue;
+            setSuccessFor(passwordElement);
+            setSuccessFor(confirmPasswordElement);
+        }
+        saveUser(user);
     } else if (checkInputs()) {
-        const emailValue = emailElement.querySelector("input").value;
-        const passwordValue = passwordElement.querySelector("input").value;
         if (popupIsLogIn) {
-            // Login
+            // Log In
             if (!checkPassword(emailValue, passwordValue)) {
                 setErrorMessageFor(passwordElement, "Invalid Password");
                 return;
             }
-            login(email);
+            login(emailValue, passwordValue);
         } else {
             // Sign Up
-            const firstNameValue = firstNameElement.querySelector("input").value;
-            const lastNameValue = lastNameElement.querySelector("input").value;
             newUser(firstNameValue, lastNameValue, emailValue, passwordValue);
-            login(email);
+            login(emailValue, passwordValue);
         }
         currentUserEmail = emailValue;
         closePopup();
-    }
-}
-
-function deleteUser() {
-    if (popupIsSettings) {
-        // TODO: input vs placeholder
-        const emailValue = emailElement.querySelector("input").value;
-        removeUser(emailValue);
-        // TODO: second Check
-        closePopup();
-        logout();
     }
 }
 

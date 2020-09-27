@@ -17,6 +17,11 @@
         />
         <link rel="stylesheet" href="css/main.css" />
         <title>TODO List</title>
+        <script defer src="js/elements.js"></script>
+        <script defer src="js/storage.js"></script>
+        <script defer src="js/authentication.js"></script>
+        <script defer src="js/popup.js"></script>
+        <script defer src="js/lists.js"></script>
     </head>
     <header>
         <div class="header-logo">
@@ -33,8 +38,56 @@
     </header>
     <body>
         <div class="container">
-            <div class="content">
+            <div class="start-view" data-start-view>
                 <p>This app enables you to manage simple todo lists</p>
+            </div>
+            <div class="todo-view" hidden data-todo-view>
+                <div class="lists-all">
+                    <h2 class="lists-title">TODO Lists:</h2>
+                    <ul class="lists" data-lists-container></ul>
+
+                    <form action="" data-new-list-form>
+                        <input
+                            type="text"
+                            class="new list"
+                            data-new-list-input
+                            placeholder="new list name"
+                            aria-label="new list name"
+                        />
+                        <button class="btn create" aria-label="create new list">+</button>
+                    </form>
+                </div>
+
+                <div class="tasks-list" data-list-container>
+                    <div class="tasks-header">
+                        <h2 class="list-title" data-list-title>YouTube</h2>
+                        <p class="task-count" data-list-count>0 tasks remaining</p>
+                    </div>
+
+                    <div class="tasks-body">
+                        <div class="tasks" data-tasks></div>
+
+                        <div class="new-task-creator">
+                            <form action="" data-new-task-form>
+                                <input
+                                    type="text"
+                                    class="new task"
+                                    data-new-task-input
+                                    placeholder="new task name"
+                                    aria-label="new task name"
+                                />
+                                <button class="btn create" aria-label="create new task">+</button>
+                            </form>
+                        </div>
+
+                        <div class="delete-stuff">
+                            <button class="btn delete" data-tasks-clear-complete>
+                                Clear completed tasks
+                            </button>
+                            <button class="btn delete" data-list-delete>Delete list</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="overlay" data-overlay>
@@ -52,7 +105,7 @@
                 >
             </div>
         </div>
-        <div class="popup" data-popup data-popup>
+        <form class="popup" data-popup data-popup>
             <div class="popup-close" data-popup-close tabindex="0">&times;</div>
             <div class="header">
                 <div class="avatar">
@@ -106,13 +159,20 @@
             </div>
             <div class="popup-element delete" data-popup-delete>
                 <button>Delete</button>
+                <div class="error" hidden></div>
             </div>
             <div class="popup-element popup-switch" data-popup-switch>
                 <span>Already a Member?</span>&nbsp;<a id="popup-switch" tabindex="0">Log In</a>
             </div>
-        </div>
+        </form>
         <footer>&copy; 2020 Christopher Bernjus</footer>
+        <template id="task-template">
+            <div class="task">
+                <input type="checkbox" />
+                <label>
+                    <span class="task-checkbox"></span>
+                </label>
+            </div>
+        </template>
     </body>
-    <script src="js/storage.js"></script>
-    <script src="js/popup.js"></script>
 </html>

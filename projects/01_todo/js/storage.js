@@ -57,7 +57,7 @@ function newUser(firstName, lastName, email, password) {
 }
 
 function getUser(email) {
-    return User.fromString(storage.getItem(email));
+    return User.prototype.fromString(storage.getItem(email));
 }
 
 function getList(email, listName) {
@@ -88,8 +88,14 @@ function updateUserInfo(email, property, value) {
 }
 
 function userExists(email) {
-    const user = storage.getItem(email);
+    const user = getUser(email);
     if (user) return true;
+    return false;
+}
+
+function checkPassword(email, password) {
+    const user = getUser(email);
+    if (user && user.password == password) return true;
     return false;
 }
 

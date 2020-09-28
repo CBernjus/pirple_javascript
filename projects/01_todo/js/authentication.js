@@ -18,6 +18,7 @@ function login(email, password) {
         startView.hidden = true;
         todoView.hidden = false;
         reloadLists();
+        render();
     }
 }
 

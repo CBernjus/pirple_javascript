@@ -176,8 +176,9 @@ function submitPopup() {
             user.email = emailValue;
             setSuccessFor(emailElement);
         }
-        if (passwordValue !== user.password && confirmPasswords()) {
-            user.password = passwordValue;
+        const hashedPassword = hashPassword(passwordValue);
+        if (hashPassword !== user.password && confirmPasswords()) {
+            user.password = hashPassword;
             setSuccessFor(passwordElement);
             setSuccessFor(confirmPasswordElement);
         }

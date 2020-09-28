@@ -156,5 +156,3 @@ function checkTermsOfUse() {
 function checkInputs() {
     return checkEmail() & confirmPasswords() & (popupIsLogIn || checkNames() & checkTermsOfUse());
 }
-
-login("danni@low.de", "danniLOW3§");

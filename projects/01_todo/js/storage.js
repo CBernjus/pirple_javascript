@@ -1,12 +1,11 @@
 const storage = window.localStorage;
-const STORAGE_KEY = "todo-users";
 
 class User {
     constructor(_firstName, _lastName, _email, _password) {
         this.firstName = _firstName;
         this.lastName = _lastName;
         this.email = _email;
-        this.password = _password;
+        this.password = hashPassword(_password);
         this.lists = [];
     }
 }
@@ -36,18 +35,13 @@ class Task {
     }
 }
 
-function getUserList() {
-    const listString = storage.getItem(STORAGE_KEY);
-    return !listString || listString === "" ? [] : JSON.parse(storage.getItem(STORAGE_KEY));
-}
-
 function newUser(firstName, lastName, email, password) {
     const user = new User(firstName, lastName, email, password);
     saveUser(user);
 }
 
 function getUser(email) {
-    return getUserList().find((user) => user.email == email);
+    return JSON.parse(storage.getItem(email));
 }
 
 function getLists(email) {
@@ -101,17 +95,21 @@ function userExists(email) {
 
 function authenticate(email, password) {
     const user = getUser(email);
-    if (user && user.password == password) return true;
+    if (user && user.password == hashPassword(password)) return true;
     return false;
 }
 
 function saveUser(user) {
-    const userList = getUserList().filter((u) => u.email !== user.email);
-    userList.push(user);
-    storage.setItem(STORAGE_KEY, JSON.stringify(userList));
+    if (user) {
+        storage.setItem(user.email, user);
+        return true;
+    } else return false;
 }
 
 function removeUser(email) {
-    const userList = getUserList().filter((user) => user.email !== email);
-    storage.setItem(STORAGE_KEY, userList);
+    storage.removeItem(email);
+}
+
+function hashPassword(password) {
+    return CryptoJS.SHA512(password).toString();
 }

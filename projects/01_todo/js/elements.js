@@ -42,7 +42,8 @@ const deleteListButton = document.querySelector("[data-list-delete]");
 const clearCompleteTasksButton = document.querySelector("[data-tasks-clear-complete]");
 
 const listContainer = document.querySelector("[data-list-container]");
-const listTitleElement = document.querySelector("[data-list-title]");
+const listTitleForm = document.querySelector("[data-list-title-form]");
+const listTitleInput = document.querySelector("[data-list-title-input]");
 const listCountElement = document.querySelector("[data-list-count]");
 const tasksContainer = document.querySelector("[data-tasks]");
 

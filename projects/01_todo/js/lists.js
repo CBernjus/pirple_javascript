@@ -4,6 +4,11 @@ let selectedList;
 
 newListForm.addEventListener("submit", createList);
 newTaskForm.addEventListener("submit", createTask);
+listTitleForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    updateSelectedListTitle();
+});
+listTitleInput.addEventListener("focusout", updateSelectedListTitle);
 listsContainer.addEventListener("click", (event) => {
     if (event.target.tagName.toLowerCase() === "li") {
         selectedListId = event.target.dataset.listId;
@@ -56,6 +61,18 @@ function getSelectedList() {
     return lists.find((list) => list.id === selectedListId);
 }
 
+function updateSelectedListTitle() {
+    const newTitle = listTitleInput.value.trim();
+    if (newTitle === "" || newTitle === selectedList.name) {
+        listTitleInput.value = selectedList.name;
+    } else {
+        selectedList.name = newTitle;
+        console.log(selectedList);
+        updateList(currentUserEmail, selectedList);
+        render();
+    }
+}
+
 function render() {
     renderLists();
     renderList();
@@ -83,7 +100,7 @@ function renderLists() {
 function renderList() {
     if (selectedListId) {
         listContainer.hidden = false;
-        listTitleElement.innerText = selectedList.name;
+        listTitleInput.value = selectedList.name;
         renderTaskCount(selectedList);
         clearElement(tasksContainer);
         renderTasks(selectedList);

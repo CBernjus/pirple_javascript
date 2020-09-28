@@ -42,48 +42,48 @@ deleteButton.addEventListener("click", (event) => {
 // display popup
 
 function prepareLogInForm() {
-    formTitle.innerHTML = "Member Log In";
+    formTitle.innerText = "Member Log In";
     firstNameElement.hidden = true;
     lastNameElement.hidden = true;
     termsOfUseElement.hidden = true;
     confirmPasswordElement.hidden = true;
-    submitButton.innerHTML = "Log In";
+    submitButton.innerText = "Log In";
     deleteButtonElement.hidden = true;
     deleteButton.disabled = true;
     popupSwitchElement.hidden = false;
     [switchText, switchButton] = popupSwitchElement.children;
-    switchText.innerHTML = "Not a Member?";
-    switchButton.innerHTML = "Sign Up";
+    switchText.innerText = "Not a Member?";
+    switchButton.innerText = "Sign Up";
     popupIsLogIn = true;
     popupIsSettings = false;
 }
 
 function prepareSignUpForm() {
-    formTitle.innerHTML = "Member Sign Up";
+    formTitle.innerText = "Member Sign Up";
     firstNameElement.hidden = false;
     lastNameElement.hidden = false;
     termsOfUseElement.hidden = false;
     confirmPasswordElement.hidden = false;
     confirmPasswordElement.value = "";
-    submitButton.innerHTML = "Sign Up";
+    submitButton.innerText = "Sign Up";
     deleteButtonElement.hidden = true;
     deleteButton.disabled = true;
     popupSwitchElement.hidden = false;
     [switchText, switchButton] = popupSwitchElement.children;
-    switchText.innerHTML = "Already a Member?";
-    switchButton.innerHTML = "Log In";
+    switchText.innerText = "Already a Member?";
+    switchButton.innerText = "Log In";
     popupIsLogIn = false;
     popupIsSettings = false;
 }
 
 function prepareSettingsForm() {
     fillSettingsForm();
-    formTitle.innerHTML = "Settings";
+    formTitle.innerText = "Settings";
     firstNameElement.hidden = false;
     lastNameElement.hidden = false;
     termsOfUseElement.hidden = true;
     confirmPasswordElement.hidden = false;
-    submitButton.innerHTML = "Save";
+    submitButton.innerText = "Save";
     deleteButtonElement.hidden = false;
     deleteButton.disabled = false;
     popupSwitchElement.hidden = true;
@@ -212,7 +212,7 @@ function setErrorMessageFor(parent, msg) {
     const msgElement = parent.querySelector("div.error");
     parent.classList.remove("success");
     parent.classList.add("error");
-    msgElement.innerHTML = msg;
+    msgElement.innerText = msg;
     msgElement.removeAttribute("hidden");
 }
 

@@ -4,6 +4,10 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Secular+One&display=swap"
+            rel="stylesheet"
+        />
+        <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
             integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
@@ -19,31 +23,43 @@
         <title>TODO List</title>
         <script defer src="js/elements.js"></script>
         <script defer src="js/storage.js"></script>
+        <script defer src="js/lists.js"></script>
         <script defer src="js/authentication.js"></script>
         <script defer src="js/popup.js"></script>
-        <script defer src="js/lists.js"></script>
     </head>
     <header>
         <div class="header-logo">
-            <!--TODO: Link to Home -->
             <img src="img/homework_white.svg" />
-            <span>TODO List App</span>
+            <h4>TODO List App</h4>
         </div>
         <div>
             <button class="btn" data-signup-target>Sign Up</button>
             <button class="btn" data-login-target>Log In</button>
-            <button class="btn" data-logout-target hidden>Log Out</button>
             <button class="btn" data-settings-target hidden><i class="fas fa-user-cog"></i></button>
+            <button class="btn" data-logout-target hidden>Log Out</button>
         </div>
     </header>
     <body>
         <div class="container">
             <div class="start-view" data-start-view>
-                <p>This app enables you to manage simple todo lists</p>
+                <h1>TODO List App</h1>
+                <p>With this app you can manage your day to day life.</p>
+                <p>
+                    You can organize your upcoming tasks in different lists.<br />
+                    Add as many tasks as you want and if you're done with them mark them as
+                    completed.<br />
+                    When there are too many completed lists you can tidy up your list in one
+                    'click'.
+                </p>
+                <p>Add, rename and delete the lists as you want.</p>
+                <p>
+                    Change any of your user data at any time.<br />
+                    If you desire you even can delete your account.
+                </p>
             </div>
             <div class="todo-view" hidden data-todo-view>
                 <div class="lists-all">
-                    <h2 class="lists-title">TODO Lists:</h2>
+                    <h3 class="lists-title">TODO Lists:</h3>
                     <ul class="lists" data-lists-container></ul>
 
                     <form action="" data-new-list-form>
@@ -54,33 +70,36 @@
                             placeholder="new list name"
                             aria-label="new list name"
                         />
-                        <button class="btn create" aria-label="create new list">+</button>
+                        <button class="btn create" aria-label="create new list">
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </form>
                 </div>
 
-                <div class="tasks-list" data-list-container>
+                <div class="tasks-all" data-list-container>
                     <div class="tasks-header">
-                        <h2 class="list-title" data-list-title>YouTube</h2>
+                        <form action="" data-list-title-form>
+                            <input class="list-title" type="text" data-list-title-input />
+                        </form>
                         <p class="task-count" data-list-count>0 tasks remaining</p>
                     </div>
 
                     <div class="tasks-body">
                         <div class="tasks" data-tasks></div>
 
-                        <div class="new-task-creator">
-                            <form action="" data-new-task-form>
-                                <input
-                                    type="text"
-                                    class="new task"
-                                    data-new-task-input
-                                    placeholder="new task name"
-                                    aria-label="new task name"
-                                />
-                                <button class="btn create" aria-label="create new task">+</button>
-                            </form>
-                        </div>
-
-                        <div class="delete-stuff">
+                        <form action="" data-new-task-form>
+                            <input
+                                type="text"
+                                class="new task"
+                                data-new-task-input
+                                placeholder="new task name"
+                                aria-label="new task name"
+                            />
+                            <button class="btn create" aria-label="create new task">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </form>
+                        <div class="delete-buttons">
                             <button class="btn delete" data-tasks-clear-complete>
                                 Clear completed tasks
                             </button>
@@ -158,7 +177,7 @@
                 <button></button>
             </div>
             <div class="popup-element delete" data-popup-delete>
-                <button>Delete</button>
+                <button>Delete User</button>
                 <div class="error" hidden></div>
             </div>
             <div class="popup-element popup-switch" data-popup-switch>

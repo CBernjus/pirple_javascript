@@ -38,7 +38,7 @@ class Task {
 
 function getUserList() {
     const listString = storage.getItem(STORAGE_KEY);
-    return listString === "" ? [] : JSON.parse(storage.getItem(STORAGE_KEY));
+    return !listString || listString === "" ? [] : JSON.parse(storage.getItem(STORAGE_KEY));
 }
 
 function newUser(firstName, lastName, email, password) {
@@ -64,7 +64,7 @@ function getList(email, listId) {
 
 function addList(email, list) {
     const user = getUser(email);
-    if (user.lists) {
+    if (user && user.lists) {
         user.lists.push(list);
         saveUser(user);
         return true;
@@ -81,8 +81,19 @@ function removeList(email, listId) {
 }
 
 function updateList(email, list) {
-    removeList(email, list.id);
-    addList(email, list);
+    const user = getUser(email);
+    console.log(user);
+    if (user && user.lists) {
+        for (let i = 0; i < user.lists.length; i++) {
+            if (user.lists[i].id === list.id) {
+                console.log("true");
+                user.lists[i] = list;
+            }
+        }
+        console.log(user);
+        saveUser(user);
+        return true;
+    } else return false;
 }
 
 function userExists(email) {

@@ -74,11 +74,15 @@
   opacity: 0.4;
 }
 
-.tasks-all {
+.tasks-container {
   grid-area: tasks;
 }
 
-.tasks-all .tasks-header {
+.tasks-container .tasks-wrapper {
+  box-shadow: 5px 5px 5px gainsboro;
+}
+
+.tasks-container .tasks-header {
   background: #296fe8;
   color: #f5f5f5;
   padding: 1.5rem;
@@ -88,13 +92,13 @@
   border-bottom: 3px solid gainsboro;
 }
 
-.tasks-all .tasks-header h1,
-.tasks-all .tasks-header h2,
-.tasks-all .tasks-header h3 {
+.tasks-container .tasks-header h1,
+.tasks-container .tasks-header h2,
+.tasks-container .tasks-header h3 {
   color: #f5f5f5;
 }
 
-.tasks-all .tasks-header .list-title {
+.tasks-container .tasks-header .list-title {
   margin: 0 1em 0 0;
   font-size: 1.5em;
   font-weight: bolder;
@@ -105,36 +109,35 @@
   outline: none;
 }
 
-.tasks-all .tasks-header .list-title:hover, .tasks-all .tasks-header .list-title:focus {
+.tasks-container .tasks-header .list-title:hover, .tasks-container .tasks-header .list-title:focus {
   border-bottom-color: #f5f5f5;
 }
 
-.tasks-all .tasks-header .task-count {
+.tasks-container .tasks-header .task-count {
   font-size: 0.8rem;
   margin: 0;
 }
 
-.tasks-all .tasks-body {
+.tasks-container .tasks-body {
   position: relative;
   padding: 1.5rem;
   background: white;
-  box-shadow: 5px 5px 5px gainsboro;
 }
 
-.tasks-all .tasks-body input[type="checkbox"] {
+.tasks-container .tasks-body input[type="checkbox"] {
   opacity: 0;
   position: absolute;
 }
 
-.tasks-all .tasks-body .task {
+.tasks-container .tasks-body .task {
   position: relative;
 }
 
-.tasks-all .tasks-body .task:not(.new) {
+.tasks-container .tasks-body .task:not(.new) {
   margin-bottom: 1.5em;
 }
 
-.tasks-all .tasks-body .task::after {
+.tasks-container .tasks-body .task::after {
   content: "";
   position: absolute;
   left: 0;
@@ -145,14 +148,14 @@
   opacity: 0.1;
 }
 
-.tasks-all .tasks-body .task label {
+.tasks-container .tasks-body .task label {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   position: relative;
 }
 
-.tasks-all .tasks-body .task label::after {
+.tasks-container .tasks-body .task label::after {
   content: "";
   position: absolute;
   left: 1.6em;
@@ -165,7 +168,7 @@
   transition: transform 100ms ease-in-out;
 }
 
-.tasks-all .tasks-body .task label .task-checkbox {
+.tasks-container .tasks-body .task label .task-checkbox {
   display: inline-block;
   width: 0.9em;
   height: 0.9em;
@@ -177,28 +180,28 @@
   transition: transform 200ms ease-in-out;
 }
 
-.tasks-all .tasks-body .task:hover .task-checkbox,
-.tasks-all .tasks-body input[type="checkbox"]:focus + label .task-checkbox {
+.tasks-container .tasks-body .task:hover .task-checkbox,
+.tasks-container .tasks-body input[type="checkbox"]:focus + label .task-checkbox {
   transform: scale(1.2);
   color: #296fe8;
 }
 
-.tasks-all .tasks-body input[type="checkbox"]:checked + label {
+.tasks-container .tasks-body input[type="checkbox"]:checked + label {
   opacity: 0.5;
 }
 
-.tasks-all .tasks-body input[type="checkbox"]:checked + label::after {
+.tasks-container .tasks-body input[type="checkbox"]:checked + label::after {
   transform-origin: left;
   transform: scaleX(1);
 }
 
-.tasks-all .tasks-body input[type="checkbox"]:checked + label .task-checkbox {
+.tasks-container .tasks-body input[type="checkbox"]:checked + label .task-checkbox {
   background: #296fe8;
   border-color: #296fe8;
   box-shadow: inset 0 0 0px 2px white;
 }
 
-.tasks-all .tasks-body .delete-buttons {
+.tasks-container .tasks-body .delete-buttons {
   display: flex;
   justify-content: space-evenly;
   position: absolute;
@@ -207,18 +210,14 @@
   bottom: -45px;
 }
 
-.tasks-all .tasks-body .delete-buttons .delete {
+.tasks-container .tasks-body .delete-buttons .delete {
   color: #296fe8;
   font-size: 0.8em;
   transition: color 200ms;
 }
 
-.tasks-all .tasks-body .delete-buttons .delete:hover, .tasks-all .tasks-body .delete-buttons .delete:focus {
+.tasks-container .tasks-body .delete-buttons .delete:hover, .tasks-container .tasks-body .delete-buttons .delete:focus {
   color: #c94242;
-}
-
-#popup-avatar-source {
-  display: none;
 }
 
 .overlay.active {
@@ -227,20 +226,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 5;
   background: rgba(0, 0, 0, 0.5);
-}
-
-.overlay.active #popup-avatar-source {
-  display: inline;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  color: #888888;
-}
-
-.overlay.active #popup-avatar-source a {
-  color: #888888;
 }
 
 .popup {
@@ -253,7 +240,7 @@
   padding: 5px;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
-  z-index: 2;
+  z-index: 6;
   background: #f5f5f5;
   border-radius: 15px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
@@ -466,6 +453,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 2;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
 header .header-logo {
@@ -516,4 +505,13 @@ footer {
   bottom: 0;
   width: 100%;
   font-size: 0.8em;
+  margin-left: 2px;
+}
+
+footer #popup-avatar-source {
+  color: #888888;
+}
+
+footer #popup-avatar-source a {
+  color: #888888;
 }

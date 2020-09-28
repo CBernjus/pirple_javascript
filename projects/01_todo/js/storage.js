@@ -82,15 +82,12 @@ function removeList(email, listId) {
 
 function updateList(email, list) {
     const user = getUser(email);
-    console.log(user);
     if (user && user.lists) {
         for (let i = 0; i < user.lists.length; i++) {
             if (user.lists[i].id === list.id) {
-                console.log("true");
                 user.lists[i] = list;
             }
         }
-        console.log(user);
         saveUser(user);
         return true;
     } else return false;

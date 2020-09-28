@@ -1,26 +1,13 @@
 @import './_variables'
 
-#popup-avatar-source
-    display: none
-
 .overlay.active
     position: fixed
     top: 0
     left: 0
     width: 100vw
     height: 100vh
-    z-index: 1
+    z-index: 5
     background: $color-overlay
-
-    #popup-avatar-source
-        display: inline
-        position: absolute
-        bottom: 0
-        right: 0
-        color: $color-text-secondary
-
-        a
-            color: $color-text-secondary
 
 .popup
     position: absolute
@@ -32,7 +19,7 @@
     padding: 5px
     transform: translate(-50%, -50%) scale(0)
     transition: 200ms ease-in-out
-    z-index: 2
+    z-index: 6
     background: $color-white
     border-radius: 15px
     box-shadow: 5px 5px 10px $color-shadow

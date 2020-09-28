@@ -6,7 +6,7 @@
 
 @import './_variables'
 @import './_lists'
-@import './popup'
+@import './_popup'
 
 ::placeholder
     color: $color-text-secondary
@@ -20,6 +20,8 @@ header
     display: flex
     justify-content: space-between
     align-items: center
+    z-index: 2
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15)
 
     .header-logo
         display: flex
@@ -62,3 +64,10 @@ footer
     bottom: 0
     width: 100%
     font-size: 0.8em
+    margin-left: 2px
+
+    #popup-avatar-source
+        color: $color-text-secondary
+
+        a
+            color: $color-text-secondary

@@ -38,7 +38,7 @@ function logout() {
 function deleteUser() {
     const passwordValue = passwordInput.value.trim();
     if (popupIsSettings) {
-        if (confirmPasswords() && authenticate(currentUserEmail, passwordValue)) {
+        if (checkPassword() && authenticate(currentUserEmail, passwordValue)) {
             removeUser(currentUserEmail);
             closePopup();
             logout();
@@ -53,12 +53,12 @@ function deleteUser() {
 
 // input checking
 
-function checkNotEmpty(input, parent) {
+function checkNotEmpty(input, parent, showSuccess = true) {
     if (input.value.trim() == "") {
         setErrorMessageFor(parent, "This field is required");
         return false;
     }
-    setSuccessFor(parent);
+    if (showSuccess) setSuccessFor(parent);
     return true;
 }
 
@@ -104,8 +104,8 @@ function checkEmailAvailability(email) {
 
 function checkPassword() {
     return (
-        (!popupIsLogIn || checkNotEmpty(passwordInput, passwordElement)) &&
-        checkPasswordFormat(passwordInput)
+        checkNotEmpty(passwordInput, passwordElement, false) &&
+        (popupIsLogIn || checkPasswordFormat(passwordInput))
     );
 }
 
@@ -156,3 +156,5 @@ function checkTermsOfUse() {
 function checkInputs() {
     return checkEmail() & confirmPasswords() & (popupIsLogIn || checkNames() & checkTermsOfUse());
 }
+
+login("danni@low.de", "danniLOW3§");

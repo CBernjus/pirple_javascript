@@ -57,9 +57,12 @@
         &::placeholder
             opacity: 0.4
 
-.tasks-all
+.tasks-container
     $spacer: 1.5rem
     grid-area: tasks
+
+    .tasks-wrapper
+        box-shadow: 5px 5px 5px darken($color-white, 10%)
 
     .tasks-header
         background: $color-blue
@@ -97,7 +100,6 @@
         position: relative
         padding: $spacer
         background: white
-        box-shadow: 5px 5px 5px darken($color-white, 10%)
 
         input[type="checkbox"]
             opacity: 0

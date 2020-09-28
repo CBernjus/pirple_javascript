@@ -94,10 +94,9 @@ function prepareSettingsForm() {
 function fillSettingsForm() {
     const user = getUser(currentUserEmail);
     if (user) {
-        firstNameInput.placeholder = user.firstName;
-        lastNameInput.placeholder = user.lastName;
-        emailInput.placeholder = user.email;
-        passwordInput.value = user.password;
+        firstNameInput.placeholder = "currently: " + user.firstName;
+        lastNameInput.placeholder = "currently: " + user.lastName;
+        emailInput.placeholder = "currently: " + user.email;
     }
 }
 
@@ -186,7 +185,7 @@ function submitPopup() {
     } else if (checkInputs()) {
         if (popupIsLogIn) {
             // Log In
-            if (!checkPassword(emailValue, passwordValue)) {
+            if (!authenticate(emailValue, passwordValue)) {
                 setErrorMessageFor(passwordElement, "Invalid Password");
                 return;
             }

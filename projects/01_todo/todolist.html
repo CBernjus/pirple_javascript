@@ -76,54 +76,42 @@
                     </form>
                 </div>
 
-                <div class="tasks-all" data-list-container>
-                    <div class="tasks-header">
-                        <form action="" data-list-title-form>
-                            <input class="list-title" type="text" data-list-title-input />
-                        </form>
-                        <p class="task-count" data-list-count>0 tasks remaining</p>
-                    </div>
+                <div class="tasks-container" data-list-container>
+                    <div class="tasks-wrapper">
+                        <div class="tasks-header">
+                            <form action="" data-list-title-form>
+                                <input class="list-title" type="text" data-list-title-input />
+                            </form>
+                            <p class="task-count" data-list-count>0 tasks remaining</p>
+                        </div>
 
-                    <div class="tasks-body">
-                        <div class="tasks" data-tasks></div>
+                        <div class="tasks-body">
+                            <div class="tasks" data-tasks></div>
 
-                        <form action="" data-new-task-form>
-                            <input
-                                type="text"
-                                class="new task"
-                                data-new-task-input
-                                placeholder="new task name"
-                                aria-label="new task name"
-                            />
-                            <button class="btn create" aria-label="create new task">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </form>
-                        <div class="delete-buttons">
-                            <button class="btn delete" data-tasks-clear-complete>
-                                Clear completed tasks
-                            </button>
-                            <button class="btn delete" data-list-delete>Delete list</button>
+                            <form action="" data-new-task-form>
+                                <input
+                                    type="text"
+                                    class="new task"
+                                    data-new-task-input
+                                    placeholder="new task name"
+                                    aria-label="new task name"
+                                />
+                                <button class="btn create" aria-label="create new task">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </form>
+                            <div class="delete-buttons">
+                                <button class="btn delete" data-tasks-clear-complete>
+                                    Clear completed tasks
+                                </button>
+                                <button class="btn delete" data-list-delete>Delete list</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="overlay" data-overlay>
-            <div id="popup-avatar-source">
-                Icons made by
-                <a
-                    href="https://www.flaticon.com/authors/payungkead"
-                    title="Payungkead"
-                    tabindex="-1"
-                    >Payungkead</a
-                >
-                from
-                <a href="https://www.flaticon.com/" title="Flaticon" tabindex="-1"
-                    >www.flaticon.com</a
-                >
-            </div>
-        </div>
+        <div class="overlay" data-overlay></div>
         <form class="popup" data-popup data-popup>
             <div class="popup-close" data-popup-close tabindex="0">&times;</div>
             <div class="header">
@@ -184,7 +172,22 @@
                 <span>Already a Member?</span>&nbsp;<a id="popup-switch" tabindex="0">Log In</a>
             </div>
         </form>
-        <footer>&copy; 2020 Christopher Bernjus</footer>
+        <footer>
+            <span>&copy; 2020 Christopher Bernjus</span>
+            <div id="popup-avatar-source">
+                Icons made by
+                <a
+                    href="https://www.flaticon.com/authors/payungkead"
+                    title="Payungkead"
+                    tabindex="-1"
+                    >Payungkead</a
+                >
+                from
+                <a href="https://www.flaticon.com/" title="Flaticon" tabindex="-1"
+                    >www.flaticon.com</a
+                >
+            </div>
+        </footer>
         <template id="task-template">
             <div class="task">
                 <input type="checkbox" />

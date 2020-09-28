@@ -13,6 +13,7 @@ listsContainer.addEventListener("click", (event) => {
     if (event.target.tagName.toLowerCase() === "li") {
         selectedListId = event.target.dataset.listId;
         selectedList = getSelectedList();
+        renderTaskCount(selectedList);
         render();
     }
 });
@@ -21,7 +22,7 @@ tasksContainer.addEventListener("click", (event) => {
         const selectedTask = selectedList.tasks.find((task) => task.id === event.target.id);
         selectedTask.checked = event.target.checked;
         updateList(currentUserEmail, selectedList);
-        renderTaskCount(selectedList);
+        render();
     }
 });
 deleteListButton.addEventListener("click", (event) => {
@@ -92,7 +93,9 @@ function renderLists() {
         if (list.id === selectedListId) {
             listElement.classList.add("active");
         }
-        listElement.innerText = list.name;
+        listElement.innerText = `${list.name} (${getRemainingTaskCount(list)}/${
+            list.tasks.length
+        })`;
         listsContainer.appendChild(listElement);
     });
 }
@@ -110,8 +113,13 @@ function renderList() {
 }
 
 function renderTaskCount(list) {
-    const openCount = list.tasks.filter((task) => !task.checked).length;
-    listCountElement.innerText = `${openCount} ${openCount === 1 ? " task " : " tasks "} remaining`;
+    const remaining = getRemainingTaskCount(list);
+    listCountElement.innerText = `${remaining} ${remaining === 1 ? " task " : " tasks "} remaining`;
+}
+
+function getRemainingTaskCount(list) {
+    if (list) return list.tasks.filter((task) => !task.checked).length;
+    return 30;
 }
 
 function renderTasks(list) {

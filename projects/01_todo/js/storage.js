@@ -41,7 +41,8 @@ function newUser(firstName, lastName, email, password) {
 }
 
 function getUser(email) {
-    return JSON.parse(storage.getItem(email));
+    const userString = storage.getItem(email);
+    return !userString || userString === "" ? null : JSON.parse(userString);
 }
 
 function getLists(email) {
@@ -101,7 +102,7 @@ function authenticate(email, password) {
 
 function saveUser(user) {
     if (user) {
-        storage.setItem(user.email, user);
+        storage.setItem(user.email, JSON.stringify(user));
         return true;
     } else return false;
 }

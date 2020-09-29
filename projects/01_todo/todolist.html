@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Secular+One&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+            integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="css/main.css" />
+        <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/sha512.js"
+        ></script>
+        <script defer src="js/elements.js"></script>
+        <script defer src="js/storage.js"></script>
+        <script defer src="js/lists.js"></script>
+        <script defer src="js/authentication.js"></script>
+        <script defer src="js/popup.js"></script>
+        <title>TODO List</title>
+    </head>
+    <header>
+        <div class="header-logo">
+            <img src="img/homework_white.svg" />
+            <h4>TODO List App</h4>
+        </div>
+        <div>
+            <button class="btn" data-signup-target>Sign Up</button>
+            <button class="btn" data-login-target>Log In</button>
+            <button class="btn" data-settings-target hidden><i class="fas fa-user-cog"></i></button>
+            <button class="btn" data-logout-target hidden>Log Out</button>
+        </div>
+    </header>
+    <body>
+        <div class="container">
+            <div class="start-view" data-start-view>
+                <h1>TODO List App</h1>
+                <p>With this app you can manage your day to day life.</p>
+                <p>
+                    You can organize your upcoming tasks in different lists.<br />
+                    Add as many tasks as you want and if you're done with them mark them as
+                    completed.<br />
+                    When there are too many completed lists you can tidy up your list in one
+                    'click'.
+                </p>
+                <p>Add, rename and delete the lists as you want.</p>
+                <p>
+                    Change any of your user data at any time.<br />
+                    If you desire you can even delete your account.
+                </p>
+            </div>
+            <div class="todo-view" hidden data-todo-view>
+                <div class="lists-all">
+                    <h3 class="lists-title">TODO Lists:</h3>
+                    <ul class="lists" data-lists-container></ul>
+
+                    <form action="" data-new-list-form>
+                        <input
+                            type="text"
+                            class="new list"
+                            data-new-list-input
+                            placeholder="new list name"
+                            aria-label="new list name"
+                        />
+                        <button class="btn create" aria-label="create new list">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="tasks-container" data-list-container>
+                    <div class="tasks-wrapper">
+                        <div class="tasks-header">
+                            <form action="" data-list-title-form>
+                                <input class="list-title" type="text" data-list-title-input />
+                            </form>
+                            <p class="task-count" data-list-count>0 tasks remaining</p>
+                        </div>
+
+                        <div class="tasks-body">
+                            <div class="tasks" data-tasks></div>
+
+                            <form action="" data-new-task-form>
+                                <input
+                                    type="text"
+                                    class="new task"
+                                    data-new-task-input
+                                    placeholder="new task name"
+                                    aria-label="new task name"
+                                />
+                                <button class="btn create" aria-label="create new task">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </form>
+                            <div class="delete-buttons">
+                                <button class="btn delete" data-tasks-clear-complete>
+                                    Clear completed tasks
+                                </button>
+                                <button class="btn delete" data-list-delete>Delete list</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="overlay" data-overlay></div>
+        <form class="popup" data-popup data-popup>
+            <div class="popup-close" data-popup-close tabindex="0">&times;</div>
+            <div class="header">
+                <div class="avatar">
+                    <img src="img/homework.svg" alt="Avatar" />
+                </div>
+                <span data-popup-title>Member Sign Up</span>
+            </div>
+            <div class="popup-element" data-popup-firstname>
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="error" hidden></div>
+            </div>
+            <div class="popup-element" data-popup-lastname>
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="error" hidden></div>
+            </div>
+            <div class="popup-element" data-popup-email>
+                <label for="email">E-Mail</label>
+                <input type="text" id="email" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="error" hidden></div>
+            </div>
+            <div class="popup-element" data-popup-password>
+                <label for="password">Password</label>
+                <input type="password" id="password" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="error" hidden></div>
+            </div>
+            <div class="popup-element" data-popup-password-confirm>
+                <label for="password-confirm">Confirm Password</label>
+                <input type="password" id="password-confirm" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <div class="error" hidden></div>
+            </div>
+            <div class="popup-element termsOfUse" data-popup-termsofuse>
+                <input type="checkbox" id="termsOfUse" />
+                <label class="popup-checkbox" tabindex="0" for="termsOfUse"></label>
+                <span>I agree to the Terms of Use</span>
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="popup-element" data-popup-submit>
+                <button></button>
+            </div>
+            <div class="popup-element delete" data-popup-delete>
+                <button>Delete User</button>
+                <div class="error" hidden></div>
+            </div>
+            <div class="popup-element popup-switch" data-popup-switch>
+                <span>Already a Member?</span>&nbsp;<a id="popup-switch" tabindex="0">Log In</a>
+            </div>
+        </form>
+        <footer>
+            <span>&copy; 2020 Christopher Bernjus</span>
+            <div id="popup-avatar-source">
+                Icons made by
+                <a
+                    href="https://www.flaticon.com/authors/payungkead"
+                    title="Payungkead"
+                    tabindex="-1"
+                    >Payungkead</a
+                >
+                from
+                <a href="https://www.flaticon.com/" title="Flaticon" tabindex="-1"
+                    >www.flaticon.com</a
+                >
+            </div>
+        </footer>
+        <template id="task-template">
+            <div class="task">
+                <input type="checkbox" />
+                <label>
+                    <span class="task-checkbox"></span>
+                </label>
+            </div>
+        </template>
+    </body>
+</html>

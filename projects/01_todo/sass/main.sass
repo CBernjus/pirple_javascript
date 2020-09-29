@@ -1,0 +1,73 @@
+*,
+*::after,
+*::before
+    font-family: inherit
+    box-sizing: border-box
+
+@import './_variables'
+@import './_lists'
+@import './_popup'
+
+::placeholder
+    color: $color-text-secondary
+
+header
+    position: fixed
+    width: 100%
+    background: $color-blue
+    color: $color-white
+    padding: 10px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    z-index: 2
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15)
+
+    .header-logo
+        display: flex
+        align-items: center
+
+        h4
+            color: $color-white
+            margin: 0
+
+    img
+        width: 3rem
+        margin: 0 10px
+
+    .btn
+        color: $color-white
+
+        &:focus,
+        &:hover
+            outline: none
+            color: $color-text-primary
+
+body
+    background: $color-white
+    color: $color-text-primary
+    font-family: 'Open Sans', sans-serif
+
+    h1,
+    h2,
+    h3,
+    h4
+        font-family: 'Secular One', sans-serif
+        color: $color-blue
+
+.container
+    padding-top: 120px
+    padding-bottom: 50px
+
+footer
+    position: fixed
+    bottom: 0
+    width: 100%
+    font-size: 0.8em
+    margin-left: 2px
+
+    #popup-avatar-source
+        color: $color-text-secondary
+
+        a
+            color: $color-text-secondary

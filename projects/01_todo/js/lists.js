@@ -2,35 +2,35 @@ let lists = [];
 let selectedListId;
 let selectedList;
 
-newListForm.addEventListener("submit", createList);
-newTaskForm.addEventListener("submit", createTask);
-listTitleForm.addEventListener("submit", (event) => {
+newListForm.addEventListener('submit', createList);
+newTaskForm.addEventListener('submit', createTask);
+listTitleForm.addEventListener('submit', (event) => {
     event.preventDefault();
     updateSelectedListTitle();
 });
-listTitleInput.addEventListener("focusout", updateSelectedListTitle);
-listsContainer.addEventListener("click", (event) => {
-    if (event.target.tagName.toLowerCase() === "li") {
+listTitleInput.addEventListener('focusout', updateSelectedListTitle);
+listsContainer.addEventListener('click', (event) => {
+    if (event.target.tagName.toLowerCase() === 'li') {
         selectedListId = event.target.dataset.listId;
         selectedList = getSelectedList();
         renderTaskCount(selectedList);
         render();
     }
 });
-tasksContainer.addEventListener("click", (event) => {
-    if (event.target.tagName.toLowerCase() === "input") {
+tasksContainer.addEventListener('click', (event) => {
+    if (event.target.tagName.toLowerCase() === 'input') {
         const selectedTask = selectedList.tasks.find((task) => task.id === event.target.id);
         selectedTask.checked = event.target.checked;
         updateList(currentUserEmail, selectedList);
         render();
     }
 });
-deleteListButton.addEventListener("click", (event) => {
+deleteListButton.addEventListener('click', (event) => {
     removeList(currentUserEmail, selectedListId);
     selectedListId = null;
     render();
 });
-clearCompleteTasksButton.addEventListener("click", (event) => {
+clearCompleteTasksButton.addEventListener('click', (event) => {
     selectedList.tasks = selectedList.tasks.filter((task) => !task.checked);
     updateList(currentUserEmail, selectedList);
     render();
@@ -39,7 +39,7 @@ clearCompleteTasksButton.addEventListener("click", (event) => {
 function createList(event) {
     event.preventDefault();
     const listName = newListInput.value;
-    if (listName == null || listName === "") return;
+    if (listName == null || listName === '') return;
     const list = new List(listName);
     newListInput.value = null;
     addList(currentUserEmail, list);
@@ -49,7 +49,7 @@ function createList(event) {
 function createTask(event) {
     event.preventDefault();
     const taskName = newTaskInput.value;
-    if (taskName == null || taskName === "") return;
+    if (taskName == null || taskName === '') return;
     const task = new Task(taskName, false);
     newTaskInput.value = null;
     selectedList.tasks.push(task);
@@ -64,7 +64,7 @@ function getSelectedList() {
 
 function updateSelectedListTitle() {
     const newTitle = listTitleInput.value.trim();
-    if (newTitle === "" || newTitle === selectedList.name) {
+    if (newTitle === '' || newTitle === selectedList.name) {
         listTitleInput.value = selectedList.name;
     } else {
         selectedList.name = newTitle;
@@ -87,13 +87,13 @@ function renderLists() {
     clearElement(listsContainer);
     reloadLists();
     lists.forEach((list) => {
-        const listElement = document.createElement("li");
+        const listElement = document.createElement('li');
         listElement.dataset.listId = list.id;
-        listElement.classList.add("list-name");
+        listElement.classList.add('list-name');
         if (list.id === selectedListId) {
-            listElement.classList.add("active");
+            listElement.classList.add('active');
         }
-        listElement.innerText = `${list.name} (${getRemainingTaskCount(list)}/${
+        listElement.innerText = `${list.name} (${getCompletedTaskCount(list)}/${
             list.tasks.length
         })`;
         listsContainer.appendChild(listElement);
@@ -113,12 +113,12 @@ function renderList() {
 }
 
 function renderTaskCount(list) {
-    const remaining = getRemainingTaskCount(list);
-    listCountElement.innerText = `${remaining} ${remaining === 1 ? " task " : " tasks "} remaining`;
+    const remaining = getCompletedTaskCount(list);
+    listCountElement.innerText = `${remaining} ${remaining === 1 ? ' task ' : ' tasks '} remaining`;
 }
 
-function getRemainingTaskCount(list) {
-    if (list) return list.tasks.filter((task) => !task.checked).length;
+function getCompletedTaskCount(list) {
+    if (list) return list.tasks.filter((task) => task.checked).length;
     return 30;
 }
 
@@ -128,10 +128,10 @@ function renderTasks(list) {
 
 function renderTask(task) {
     const taskElement = document.importNode(taskTemplate.content, true);
-    const checkbox = taskElement.querySelector("input");
+    const checkbox = taskElement.querySelector('input');
     checkbox.id = task.id;
     checkbox.checked = task.checked;
-    const label = taskElement.querySelector("label");
+    const label = taskElement.querySelector('label');
     label.htmlFor = task.id;
     label.append(task.text);
     tasksContainer.appendChild(taskElement);
